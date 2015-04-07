@@ -64,7 +64,7 @@ def delete_experience(experience_id):
     
 @app.route('/clipcultexperiences/api/v1.0/map')
 def render_map():
-	return render_template('map.html', experiences=experiences)
+	return render_template('map.html')
     
 @app.route('/clipcultexperiences/api/v1.0/form')
 def render_form():
