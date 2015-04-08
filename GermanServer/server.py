@@ -2,6 +2,16 @@ from flask import Flask, jsonify, abort, make_response, request, render_template
 
 app = Flask(__name__)
 
+users = [
+	{
+	'login' : 'admin',
+	'passwd': 'teste123'
+	},
+	{'login' : 'admin2',
+	'passwd' : 'teste123'
+	}
+	]
+
 experiences = [
     {
         'id': 1,
@@ -24,6 +34,15 @@ experiences = [
 def index():
     return "Hello, World!"
     
+@app.route('/clipcultexperiences/api/v1.0/login', methods=['GET'])
+def get_login():
+    user = [user for user in users if user['login'] == request.json.get('login','')]
+    if len(user) == 0:
+        abort(404)
+    if request.json.get('passwd','') != user[0]['passwd']:
+		abort(401)
+    return jsonify({'auth_result': 'success'})
+    
 @app.route('/clipcultexperiences/api/v1.0/experiences/<int:experience_id>', methods=['GET'])
 def get_experience(experience_id):
     experience = [experience for experience in experiences if experience['id'] == experience_id]
@@ -38,6 +57,10 @@ def get_experiences():
 @app.errorhandler(404)
 def not_found(error):
 	return make_response(jsonify({'error':'Not found'}),404)
+	
+@app.errorhandler(401)
+def auth_failure(error):
+	return make_response(jsonify({'auth_result':'failure'}),401)
 
 @app.route('/clipcultexperiences/api/v1.0/experiences/', methods=['POST'])
 def new_experience():
