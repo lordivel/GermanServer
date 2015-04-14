@@ -18,8 +18,8 @@ experiences = [
         'title': u'My Trip to Germany',
         'link': u'https://www.youtube.com/watch?v=9peAsDZwiiQ', 
         'desc': "Just testing",
-		'lat': '10',
-		'lng': '10'
+		'lat': '5',
+		'lng': '5'
     },
     {
         'id': 2,
@@ -42,7 +42,7 @@ def get_login():
     if request.json.get('passwd','') != user[0]['passwd']:
 		abort(401)
     return jsonify({'auth_result': 'success'})
-    
+
 @app.route('/clipcultexperiences/api/v1.0/experiences/<int:experience_id>', methods=['GET'])
 def get_experience(experience_id):
     experience = [experience for experience in experiences if experience['id'] == experience_id]
