@@ -65,8 +65,21 @@
         var infoWindow = new google.maps.InfoWindow();
         // Attaching a click event to the current marker
         google.maps.event.addListener(marker, "click", function(e) {
-            infoWindow.setContent(data.title);
-            infoWindow.open(map, marker);
+			
+		var contentString = '<div id="content">'+
+		'<div id="siteNotice">'+
+		'</div>'+
+		'<h1 id="firstHeading" class="firstHeading">' + data.title + '</h1>'+
+		'<div id="bodyContent">'+
+		'<p><b>ID:</b> ' + data.id +
+		'<p><b>Description:</b> ' + data.desc +
+		'<iframe id="ytplayer" type="text/html" width="640" height="390"' +
+		'src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"' +
+		'frameborder="0"/>' +
+		'</div>'+
+		'</div>';
+		infoWindow.setContent(contentString);
+        infoWindow.open(map, marker);
         });
 
         // Creating a closure to retain the correct data 
@@ -74,7 +87,21 @@
         (function(marker, data) {
           // Attaching a click event to the current marker
           google.maps.event.addListener(marker, "click", function(e) {
-            infoWindow.setContent(data.title);
+			
+			var contentString = '<div id="content">'+
+			'<div id="siteNotice">'+
+			'</div>'+
+			'<h1 id="firstHeading" class="firstHeading">' + data.title + '</h1>'+
+			'<div id="bodyContent">'+
+			'<p><b>ID:</b> ' + data.id +
+			'<p><b>Description:</b> ' + data.desc +
+			'<iframe id="ytplayer" type="text/html" width="640" height="390"' +
+			'src="http://www.youtube.com/embed/' + data.link +'?autoplay=1&origin=http://example.com"' +
+			'frameborder="0"/>'+
+			'</div>'+
+			'</div>';
+			
+            infoWindow.setContent(contentString);
             infoWindow.open(map, marker);
           });
         })(marker, data);
@@ -84,6 +111,8 @@
 	
 	
 	</script>
+	
+	<script> /* To use: http://bootstrapzero.com/bootstrap-template/the-firm */</script>
 	</head>
 	<body>
 		<div id="map-canvas"/>

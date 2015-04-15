@@ -16,7 +16,7 @@ experiences = [
     {
         'id': 1,
         'title': u'My Trip to Germany',
-        'link': u'https://www.youtube.com/watch?v=9peAsDZwiiQ', 
+        'link': u'9peAsDZwiiQ', 
         'desc': "Just testing",
 		'lat': '5',
 		'lng': '5'
@@ -24,7 +24,7 @@ experiences = [
     {
         'id': 2,
         'title': u'First Impressions',
-        'link': u'https://www.youtube.com/watch?v=49gVihPIX3Q', 
+        'link': u'49gVihPIX3Q', 
         'desc': "Just testing 2",
 		'lat': '10',
 		'lng': '10'
