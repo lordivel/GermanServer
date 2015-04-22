@@ -1,18 +1,75 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	<title>ClipCult Experiences</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <style type="text/css">
-		html { height: 100% }
-		body { height: 100%; margin: 0; padding: 0 }
-		#map-canvas { height: 100% }
-    </style>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-	<script>
-	
+$(document).ready(function(){$('.carousel').carousel({interval:false});
+
+/* affix the navbar after scroll below header */
+$('#nav').affix({
+      offset: {
+        top: $('header').height()-$('#nav').height()
+      }
+});	
+
+/* highlight the top nav as scrolling occurs */
+$('body').scrollspy({ target: '#nav' })
+
+/* smooth scrolling for scroll to top */
+$('.scroll-top').click(function(){
+  $('body,html').animate({scrollTop:0},1000);
+})
+
+/* smooth scrolling for nav sections */
+$('#nav .navbar-nav li>a').click(function(){
+  var link = $(this).attr('href');
+  var posi = $(link).offset().top;
+  $('body,html').animate({scrollTop:posi},700);
+});
+
+
+/* copy loaded thumbnails into carousel */
+$('.panel .img-responsive').on('load', function() {
+  
+}).each(function(i) {
+  if(this.complete) {
+  	var item = $('<div class="item"></div>');
+    var itemDiv = $(this).parent('a');
+    var title = $(this).parent('a').attr("title");
+    
+    item.attr("title",title);
+  	$(itemDiv.html()).appendTo(item);
+  	item.appendTo('#modalCarousel .carousel-inner'); 
+    if (i==0){ // set first item active
+     item.addClass('active');
+    }
+  }
+});
+
+/* activate the carousel */
+$('#modalCarousel').carousel({interval:false});
+
+/* change modal title when slide changes */
+$('#modalCarousel').on('slid.bs.carousel', function () {
+  $('.modal-title').html($(this).find('.active').attr("title"));
+})
+
+/* when clicking a thumbnail */
+$('.panel-thumbnail>a').click(function(e){
+  
+    e.preventDefault();
+    var idx = $(this).parents('.panel').parent().index();
+  	var id = parseInt(idx);
+  	
+  	$('#myModal').modal('show'); // show the modal
+    $('#modalCarousel').carousel(id); // slide carousel to selected
+  	return false;
+});
+
+
+
+
+
+/* google maps */
+google.maps.visualRefresh = true;
+
+var map;
 	function initialize() {
         var latitude = 50.573087,
             longitude = 7.254032,
@@ -115,13 +172,8 @@
     }
 
    google.maps.event.addDomListener(window, 'load', initialize);
-	
-	
-	</script>
-	
-	<script> /* To use: http://bootstrapzero.com/bootstrap-template/the-firm */</script>
-	</head>
-	<body>
-		<div id="map-canvas"/>
-	</body>
-</html>
+
+/* end google maps */
+
+
+});
