@@ -76,7 +76,7 @@ var map;
             center = new google.maps.LatLng(latitude,longitude),
             mapOptions = {
                 center: center,
-                zoom: 9,
+                zoom: 15,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
@@ -87,7 +87,7 @@ var map;
 		var lat = event.latLng.lat();
 		var lng = event.latLng.lng();
 		// populate yor box/field with lat, lng
-		alert("Lat=" + lat + "; Lng=" + lng);
+		alert("These are the coordinates of your click. Latitude=" + lat + " and Longitude=" + lng);
 		});
 
     }
@@ -98,7 +98,7 @@ var map;
             $.ajax({ 
                 'async': false, 
                 'global': false, 
-                'url': "http://localhost:5000/clipcultexperiences/api/v1.0/experiences", 
+                'url': "http://ec2-52-10-89-140.us-west-2.compute.amazonaws.com:5000/clipcultexperiences/api/v1.0/experiences", 
                 'dataType': "json", 
                 'success': function (data) {
                      json = data['experiences']; 
