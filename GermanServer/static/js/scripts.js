@@ -98,7 +98,7 @@ var map;
             $.ajax({ 
                 'async': false, 
                 'global': false, 
-                'url': "http://ec2-52-10-89-140.us-west-2.compute.amazonaws.com:5000/clipcultexperiences/api/v1.0/experiences", 
+                'url': "http://ec2-52-10-89-140.us-west-2.compute.amazonaws.com/clipcultexperiences/api/v1.0/experiences", 
                 'dataType': "json", 
                 'success': function (data) {
                      json = data['experiences']; 
