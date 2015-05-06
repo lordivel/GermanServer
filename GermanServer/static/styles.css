@@ -210,7 +210,7 @@ section {
 }
 
 .bg-1 {
-	background: url('/static/image/imagem04.jpg') no-repeat center center fixed; 
+	background: url('/static/image/cristo.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
@@ -218,7 +218,7 @@ section {
 }
 
 .bg-2 {
-	background: url('/static/image/imagem08.jpg') no-repeat center center fixed; 
+	background: url('/static/image/sao.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
@@ -226,7 +226,7 @@ section {
 }
 
 .bg-3 {
-	background: url('/static/image/imagem05.jpg') no-repeat center center fixed; 
+	background: url('/static/image/estatuas2.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
