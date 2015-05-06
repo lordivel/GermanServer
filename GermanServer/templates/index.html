@@ -261,11 +261,91 @@
        
   <div id="map-canvas"></div>
   
+</div><!--/row-->
+  
+<div class="divider" id="section5"></div>  
+
+<div class="row">
+  
   <hr>
   
-  <div class="col-sm-8"></div>
-  <div class="col-sm-3 pull-right">
+  <div class="col-sm-12 col-sm-offset-1">
+      
+      <div class="row form-group">
+        <div class="col-md-12">
+        <h1>Share your experience</h1>        
+        </div>
+        <div class="col-xs-4">
+          <input type="text" class="form-control" id="login" name="login" placeholder="Your Login Here">
+        </div>
+        <div class="col-xs-6">
+          <input type="password" class="form-control" id="passwd" name="password" placeholder="Your Password Here">
+        </div>
+      </div>
+      <div class="row form-group">
+          <div class="col-xs-5">
+          <input type="text" class="form-control" id = "title" name="title" placeholder="Video Title">
+          </div>
+          <div class="col-xs-5">
+          <input type="text" class="form-control" id = "link" name="link" placeholder="Video Link. Only the ending">
+          </div>
+      </div>
+      <div class="row form-group">
+          <div class="col-xs-5">
+          <input type="text" class="form-control" id = "lat" name="lat" placeholder="Latitude">
+          </div>
+          <div class="col-xs-5">
+          <input type="text" class="form-control" id = "lng" name="lng" placeholder="Longitude">
+          </div>
+      </div>
+      <div class="row form-group">
+          <div class="col-xs-10">
+            <textarea class="form-control" id = "desc" name="desc" placeholder="Video Description"></textarea>
+          </div>
+      </div>
+      <div class="row form-group">
+          <div class="col-xs-10">
+            <button class="btn btn-default pull-right" onclick="submitform()" >Submit</button>
+          </div>
+      </div>
+ <!--/row-->   
+  </div> 
+  
+</div>
 
+
+<script>
+		submitform = function(){
+			var jsonData = {};
+			jsonData.title = document.getElementById('title').value;
+			jsonData.link = document.getElementById('link').value;
+			jsonData.desc = document.getElementById('desc').value;
+			jsonData.lat = document.getElementById('lat').value;
+			jsonData.lng = document.getElementById('lng').value;
+			jsonData.login = document.getElementById('login').value;
+			jsonData.passwd = document.getElementById('passwd').value;
+			
+			var formData = JSON.stringify(jsonData);
+			$.ajax({
+				type: "POST",
+				url: "http://localhost/clipcultexperiences/api/v1.0/experiences/",
+				data: formData,
+				dataType: "json",
+				contentType : "application/json",
+				success: function(){
+					alert('Success! Refresh page!');
+					
+				},
+				error: function(){
+					alert('Fail! Something went wrong!');
+				},
+			});
+		}
+</script>
+
+
+<div class="container">
+  	<div class="col-sm-8 col-sm-offset-2 text-center">
       <address>
         The Firm, Inc.<br>
         <span id="map-input">
@@ -278,66 +358,8 @@
         <strong>Email Us</strong><br>
         <a href="mailto:#">first.last@example.com</a>
       </address>          
-  </div>
-  
-</div><!--/row-->
-  
-<!--<div class="divider" id="section5"></div>  
-
-<div class="row">
-  
-  <hr>
-  
-  <div class="col-sm-9 col-sm-offset-1">
-      
-      <div class="row form-group">
-        <div class="col-md-12">
-        <h1>Contact Us</h1>        
-        </div>
-        <div class="col-xs-4">
-          <input type="text" class="form-control" id="firstName" name="name" placeholder="Your Name">
-        </div>
-        <div class="col-xs-6">
-          <input type="text" class="form-control" id="organization" name="organization" placeholder="Company or Organization">
-        </div>
-      </div>
-      <div class="row form-group">
-          <div class="col-xs-5">
-          <input type="text" class="form-control" name="email" placeholder="Email">
-          </div>
-          <div class="col-xs-5">
-          <input type="text" class="form-control" name="phone" placeholder="Phone">
-          </div>
-      </div>
-      <div class="row form-group">
-          <div class="col-xs-10">
-            <textarea class="form-control" placeholder="Comments"></textarea>
-          </div>
-      </div>
-      <div class="row form-group">
-          <div class="col-xs-10">
-            <button class="btn btn-default pull-right">Contact Us</button>
-          </div>
-      </div>
-    
-  </div>
-  
-</div> -->
-
-<!--/row-->
-  
-<!--<div class="container">
-  	<div class="col-sm-8 col-sm-offset-2 text-center">
-
-      <ul class="list-inline center-block">
-        <li><a href="http://facebook.com/bootply"><img src="/assets/example/soc_fb.png"></a></li>
-        <li><a href="http://twitter.com/bootply"><img src="/assets/example/soc_tw.png"></a></li>
-        <li><a href="http://google.com/+bootply"><img src="/assets/example/soc_gplus.png"></a></li>
-        <li><a href="http://pinterest.com/in1"><img src="/assets/example/soc_pin.png"></a></li>
-      </ul>
-      
   	</div>
-</div> -->
+</div>
 <!--/col-->
 <!--/container-->
   

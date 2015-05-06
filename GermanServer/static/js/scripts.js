@@ -77,6 +77,7 @@ var map;
             mapOptions = {
                 center: center,
                 zoom: 15,
+                minZoom: 3,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 

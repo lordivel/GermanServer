@@ -153,13 +153,13 @@ def alpha_delete_experience(experience_id):
     
 #HTML PART    
     
-@app.route('/clipcultexperiences/api/v1.0/map')
-def render_map():
-	return render_template('map.html')
+#@app.route('/clipcultexperiences/api/v1.0/map')
+#def render_map():
+	#return render_template('map.html')
     
-@app.route('/clipcultexperiences/api/v1.0/form')
-def render_form():
-	return render_template('form.html')
+#@app.route('/clipcultexperiences/api/v1.0/form')
+#def render_form():
+	#return render_template('form.html')
 	
 @app.route('/clipcultexperiences/api/v1.0/index')
 def render_index():
@@ -169,5 +169,5 @@ def render_index():
     
 #INITIALIZE
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port = 80)
+    app.run(debug=True, port = 80)
     
