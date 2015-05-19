@@ -3,18 +3,18 @@ from sqlalchemy import create_engine, MetaData
 from sqlalchemy import Table, Column, Integer, String
 
 engine = create_engine('sqlite:///test.db', convert_unicode=True)
-metadata = MetaData(bind=engine)
+metadata = MetaData()
+metadata.reflect(bind=engine)
+user = metadata.tables['USER']
+mark = metadata.tables['MARK']
 
 app = Flask(__name__)
-
-user = Table('USER', metadata, autoload=True)
-mark = Table('MARK', metadata, autoload=True)
-
+	
 #con = engine.connect()
 #con.execute(user.insert(), nome='admin', login = 'admin', email='admin@localhost', senha='teste123')
 #con.execute(user.insert(), nome='admin2', login = 'admin Rafael teste2', email='admin35k28@localhost', senha='teste1')
-#con.execute(mark.insert(), title='My Trip to Germany', link = '9peAsDZwiiQ', description='Just testing', userlogin='admin', latitude='5', longitude='5')
-#con.execute(mark.insert(), title='First Impressions', link = '49gVihPIX3Q', description='Just chillin', userlogin='admin2', latitude='10', longitude='10')
+#con.execute(mark.insert(), title='My Trip to Germany', link = '9peAsDZwiiQ', description='Just testing', user='admin', latitude='5', longitude='5')
+#con.execute(mark.insert(), title='First Impressions', link = '49gVihPIX3Q', description='Just chillin', user='admin2', latitude='10', longitude='10')
 
 users = [
 	{
@@ -30,57 +30,45 @@ users = [
 	}
 	]
 
-experiences = [
-    {
-        'id': 1,
-        'title': u'First Video',
-        'link': u'M7lc1UVf-VE', 
-        'desc': "Test Embedded Video",
-		'lat': u'50.57219114599819',
-		'lng': u'7.251255512237549',
-		'user': 'admin'
-    }
-]
 # WORKING PART
-@app.route('/')
-def index():
-    return "Hello, World!"
-    
-@app.route('/clipcultexperiences/api/v1.0/createuser/', methods=['POST'])
-def new_user():
-    if not request.json or not 'login' in request.json or not 'name' in request.json or not 'passwd' in request.json or not 'email' in request.json:
-        abort(400)
-    user = {
-        'name': request.json['name'],
-        'login': request.json['login'],
-        'passwd': request.json['passwd'],
-        'email' : request.json['email']
-    }
-    users.append(user)
-    return jsonify({'user': user}), 201
 
 @app.route('/clipcultexperiences/api/v1.0/experiences/<int:experience_id>', methods=['GET'])
 def get_experience(experience_id):
-    experience = [experience for experience in experiences if experience['id'] == experience_id]
-    if len(experience) == 0:
-        abort(404)
-    return jsonify({'experience': experience[0]})
+	con = engine.connect()
+	result = con.execute("select * from mark where id =" + str(experience_id))
+	returnData = []
+	for row in result:
+		experience = {
+		'id': row["id"],
+        'title': row["title"],
+        'link': row["link"], 
+        'desc': row["description"],
+		'lat': row["latitude"],
+		'lng': row["longitude"],
+		'user': row["user"]
+		}
+		returnData.append(experience)
+	con.close()
+	return jsonify({'experiences': returnData})
 
 @app.route('/clipcultexperiences/api/v1.0/experiences', methods=['GET'])
 def get_experiences():
-    return jsonify({'experiences': experiences})
-    
-@app.errorhandler(404)
-def not_found(error):
-	return make_response(jsonify({'error':'Not Found'}),404)
-	
-@app.errorhandler(401)
-def auth_failure(error):
-	return make_response(jsonify({'error':'Authentication Failure'}),401)
-	
-@app.errorhandler(400)
-def auth_failure(error):
-	return make_response(jsonify({'error':'One of The Required Fields is Missing'}),400)
+	con = engine.connect()
+	result = con.execute("select * from mark")
+	returnData = []
+	for row in result:
+		experience = {
+		'id': row["id"],
+        'title': row["title"],
+        'link': row["link"], 
+        'desc': row["description"],
+		'lat': row["latitude"],
+		'lng': row["longitude"],
+		'user': row["user"]
+		}
+		returnData.append(experience)
+	con.close()
+	return jsonify({'experiences': returnData})
 
 @app.route('/clipcultexperiences/api/v1.0/experiences/', methods=['POST'])
 def new_experience():
@@ -93,28 +81,24 @@ def new_experience():
         abort(401)
     if request.json.get('passwd','') != user[0]['passwd']:
 		abort(401)
-    experience = {
-        'id': experiences[-1]['id'] + 1,
-        'link': request.json['link'],
-        'title': request.json.get('title',''),
-        'desc': request.json.get('desc',''),
-        'lat' : request.json.get('lat',""),
-        'lng' : request.json.get('lng',""),
-        'user' : request.json.get('login','')
-    }
-    experiences.append(experience)
-    return jsonify({'experience': experience}), 201
+    con = engine.connect()
+    con.execute(mark.insert(), title= request.json.get('title','') , link = request.json['link'] , description= request.json.get('desc','') , user=request.json.get('login','') , latitude = request.json.get('lat',""), longitude = request.json.get('lng',""))
+    con.close()
+    return jsonify({'Resultado': "Inserido com Sucesso"}), 201
     
-@app.route('/clipcultexperiences/api/v1.0/experiences/<int:experience_id>', methods=['DELETE'])
-def delete_experience(experience_id):
-    experience = [experience for experience in experiences if experience['id'] == experience_id]
-    if len(experience) == 0:
-        abort(404)
-	user = [user for user in users if user['login'] == 'admin']
-	if (request.json.get('login','') != 'admin') or (request.json.get('passwd','') != user[0]['passwd']):
-		abort(401)
-    experiences.remove(experience[0])
-    return jsonify({'result': True})
+# ERROR HANDLING
+
+@app.errorhandler(404)
+def not_found(error):
+	return make_response(jsonify({'error':'Not Found'}),404)
+	
+@app.errorhandler(401)
+def auth_failure(error):
+	return make_response(jsonify({'error':'Authentication Failure'}),401)
+	
+@app.errorhandler(400)
+def auth_failure(error):
+	return make_response(jsonify({'error':'One of The Required Fields is Missing'}),400)
     
 # END OF WORKING PART
 
@@ -125,30 +109,12 @@ def alpha_login():
     return "Hello, World!"
     #return jsonify({'auth_result': 'success'})
 
-@app.route('/clipcultexperiences/api/alpha/experiences/<int:experience_id>', methods=['GET'])
-def alpha_experience(experience_id):
-    return "Hello, World!"
-    #return jsonify({'auth_result': 'success'})
-
-
-@app.route('/clipcultexperiences/api/alpha/experiences', methods=['GET'])
-def alpha_experiences():
-    return "Hello, World!"
-    #return jsonify({'auth_result': 'success'})
-
 
 @app.route('/clipcultexperiences/api/alpha/experiences/', methods=['POST'])
 def alpha_new_experience():
     return "Hello, World!"
     #return jsonify({'auth_result': 'success'})
 
-    
-@app.route('/clipcultexperiences/api/alpha/experiences/<int:experience_id>', methods=['DELETE'])
-def alpha_delete_experience(experience_id):
-    return "Hello, World!"
-    #return jsonify({'auth_result': 'success'})
-
-    
 #END OF ALPHA PART
     
 #HTML PART    
