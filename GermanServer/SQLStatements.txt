@@ -1,0 +1,86 @@
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Dennis Weber","dweber2@rheinahrcampus.de","dweber","0vTT1drP");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Lujain Alkhaldi","lujains.khaldi@hotmail.com","alkhaldi","3j63Xvol");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Fernandos Ricardo","fernandossihombing@gmail.com","ric","VP7yIElx");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Tatjana Lietz","tatjana.lietz@live.de","lietz","dCtHT0CO");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Adrian Sonje","asonje@hs-koblenz.de","sonje","p8H9s7Nm");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Brilyan Maryli Akbar","bakbar@hs-koblenz.de","akbar","Og8RhMBU");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Lutz Hoppenstock","lutzhoppenstock@googlemail.com","hoppenstock","PgYRmp0F");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Thomas Eade","teade@rheinahrcampus.de","eade","4yn3TqW9");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Katrin Kubach","kkubach@rheinahrcampus.de","kubach","iux9VT55");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Laura McGuire","lmcguire@rheinahrcampus.de","mcguire","64oWwuAu");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Amama Farooq","amamafarooq@hotmail.com","farooq","H9cPKvaD");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Mantas Valaitis","mvalaiti@rheinahrcampus.de","valaitis","llJXnk4h");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Matthias Donst","matthiasdonst@web.de","donst","KzriP7pT");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Philipp Luckhaupt","ph1lucky@aol.com","luckhaupt","094NkeaQ");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Káio","kaiolennoaraujo@gmail.com","kaio","Dv0OvYNA");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Ivan","ivanandrey@hotmail.com","ivan","q98uSsjr");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Maria","miya_ko_@hotmail.com","maria","AfP9uVBb");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Bruna","bruneves@live.co.uk","bruna","zlVw8jEj");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Eduardo","eduardophilippe12@gmail.com","eduardo","k2jlWen7");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Cléo","cleonilsonbarreto@gmail.com","cleo","I9waHlAS");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Anne","caroolinepereira@gmail.com","anne","1zF5Afak");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Antão Moura","antao@dsc.ufcg.edu.br" ,"antao","4ycWw09G");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Anderson Thelles","aandersonthelles@gmail.com" ,"thelles","1GzMcxal");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Marcelo Barros","mbarros@computacao.ufcg.edu.br" ,"marcelo","1M5Dq0qr");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Wesley Farias","wesleysilva1992@gmail.com","farias","6lxL1ugj");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Yasmim","yasmimddd@gmail.com","yasmim","kG0cDJPp");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Wanessa Braz","wanessa.mayara@gmail.com" ,"wanessa","PKNmh6of");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Samir Trajano Feitosa","samircc20092@gmail.com","samir","hta7L22O");
+
+INSERT INTO USER (name, email, login, passwd)
+VALUES ("Rafael Cavalcante Paulino","rafaeleldandil@gmail.com","rafael","IN35fleT");

@@ -9,26 +9,12 @@ user = metadata.tables['USER']
 mark = metadata.tables['MARK']
 
 app = Flask(__name__)
-	
+
 #con = engine.connect()
 #con.execute(user.insert(), nome='admin', login = 'admin', email='admin@localhost', senha='teste123')
 #con.execute(user.insert(), nome='admin2', login = 'admin Rafael teste2', email='admin35k28@localhost', senha='teste1')
 #con.execute(mark.insert(), title='My Trip to Germany', link = '9peAsDZwiiQ', description='Just testing', user='admin', latitude='5', longitude='5')
 #con.execute(mark.insert(), title='First Impressions', link = '49gVihPIX3Q', description='Just chillin', user='admin2', latitude='10', longitude='10')
-
-users = [
-	{
-	'login' : 'admin',
-	'passwd': 'testewarhammer40k',
-	'name' : 'Rafael',
-	'email' : 'xd@gmail.com'
-	},
-	{'login' : 'admin2',
-	'passwd' : 'teste123',
-	'name' : 'Rafael',
-	'email' : 'xd2@outlook.com'
-	}
-	]
 
 # WORKING PART
 
@@ -76,13 +62,19 @@ def new_experience():
         abort(400)
     if request.json['link'] == '' or request.json['title'] == '' or request.json['desc'] == '' or request.json['lat'] == '' or request.json['lng'] == '':
         abort(400)
-    user = [user for user in users if user['login'] == request.json.get('login','')]
-    if len(user) == 0:
+    userlogin = request.json.get('login','')
+    passwd = request.json.get('passwd','')
+    if len(userlogin) == 0:
         abort(401)
-    if request.json.get('passwd','') != user[0]['passwd']:
-		abort(401)
     con = engine.connect()
-    con.execute(mark.insert(), title= request.json.get('title','') , link = request.json['link'] , description= request.json.get('desc','') , user=request.json.get('login','') , latitude = request.json.get('lat',""), longitude = request.json.get('lng',""))
+    userresult = con.execute("select * from user where login = \"" + userlogin + "\"").first()
+    if userresult is None:
+		con.close()
+		abort(401)
+    if userresult["passwd"] != passwd:
+		con.close()
+		abort(401)
+    con.execute(mark.insert(), title= request.json.get('title','') , link = request.json['link'] , description= request.json.get('desc','') , user=userlogin , latitude = request.json.get('lat',""), longitude = request.json.get('lng',""))
     con.close()
     return jsonify({'Resultado': "Inserido com Sucesso"}), 201
     
@@ -104,24 +96,11 @@ def auth_failure(error):
 
 # ALPHA PART    
     
-@app.route('/clipcultexperiences/api/alpha/login', methods=['GET'])
-def alpha_login():
-    return "Hello, World!"
-    #return jsonify({'auth_result': 'success'})
-
-
-@app.route('/clipcultexperiences/api/alpha/experiences/', methods=['POST'])
-def alpha_new_experience():
-    return "Hello, World!"
-    #return jsonify({'auth_result': 'success'})
-
-#END OF ALPHA PART
-    
 #HTML PART    
     
-#@app.route('/clipcultexperiences/api/v1.0/map')
-#def render_map():
-	#return render_template('map.html')
+@app.route('/clipcultexperiences/api/v1.0/map')
+def render_map():
+	return render_template('map.html')
     
 #@app.route('/clipcultexperiences/api/v1.0/form')
 #def render_form():

@@ -8,3 +8,13 @@ CREATE TABLE MARK(
    user VARCHAR(100),
    FOREIGN KEY (user) REFERENCES USER(login)
 )
+
+CREATE TABLE USER(
+
+   name VARCHAR(100) NOT NULL,
+   login VARCHAR(100) UNIQUE NOT NULL,
+   email VARCHAR(100) NOT NULL,
+   passwd VARCHAR(100) NOT NULL,
+   primary key (login)
+
+);

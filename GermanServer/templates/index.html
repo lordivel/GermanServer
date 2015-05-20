@@ -128,7 +128,7 @@
       <hr>
      
       <p>
-	  <h3>Sharing is easy. Send an email to clipcultexperiencies@gmail.com requesting an account bt</h3>
+	  <h3>Sharing is easy. Send an email to clipcultexperiencies@gmail.com requesting an account by</h3>
 	  </p> 
       <p>
 	  <h3>providing your name and email adress. You'll receive a confirmation with a login name and a password.</h3>
@@ -141,6 +141,9 @@
 	  </p> 
       <p>
 	  <h3>For example, in the link https://www.youtube.com/watch?v=M7lc1UVf-VE the video id is M7lc1UVf-VE</h3>
+	  </p> 
+	  <p>
+	  <h3>To know the latitude and longitude of a place, just right-click it in the map below</h3>
 	  </p> 
       
       <hr>
@@ -328,12 +331,12 @@
 				data: formData,
 				dataType: "json",
 				contentType : "application/json",
-				success: function(){
+				success: function(response){
 					alert('Success! Refresh page!');
 					
 				},
-				error: function(){
-					alert('Fail! Something went wrong!');
+				error: function(jqXHR,textStatus,errorThrown){
+					alert('Fail! '+ errorThrown);
 				},
 			});
 		}
