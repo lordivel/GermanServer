@@ -110,6 +110,10 @@ def render_map():
 def render_index():
 	return render_template('index.html')
 	
+@app.route('/clipcult/api/v1.0/index')
+def render_clipcult_index():
+	return render_template('clipcultindex.html')
+	
 #END OF HTML PART
     
 #INITIALIZE

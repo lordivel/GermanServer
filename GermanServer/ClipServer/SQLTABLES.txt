@@ -1,0 +1,19 @@
+CREATE TABLE PLAYER(
+   name VARCHAR(100) NOT NULL,
+   login VARCHAR(100) UNIQUE NOT NULL,
+   email VARCHAR(100) NOT NULL,
+   passwd VARCHAR(100) NOT NULL,
+   firstStageScore REAL,
+   secondStageScore REAL,
+   thirdStageScore REAL,
+   primary key (login)
+
+)
+
+CREATE TABLE BUILDING(
+   link VARCHAR(100) NOT NULL,
+   position REAL NOT NULL,
+   login VARCHAR(100) UNIQUE NOT NULL,
+   FOREIGN KEY (login) REFERENCES PLAYER(login),
+   primary key (login)
+);
