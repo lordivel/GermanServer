@@ -95,6 +95,7 @@
 				contentType : "application/json",
 				success: function(response){
 					alert('Usuario Adicionado');
+					document.location.href = "index";
 				},
 				error: function(jqXHR,textStatus,errorThrown){
 					alert('Falhou! '+ errorThrown);
