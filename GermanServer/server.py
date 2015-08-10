@@ -78,7 +78,7 @@ def new_experience():
     con.close()
     return jsonify({'Resultado': "Inserido com Sucesso"}), 201
     
-@app.route('/clipcult/api/v1.0/user', methods=['GET'])
+@app.route('/clipcult/api/v1.0/user', methods=['POST'])
 def new_user():
 	con = engine.connect()
 	con.execute(user.insert(), name='admin', login = 'admin', email='admin@localhost', passwd='teste123')
@@ -98,6 +98,10 @@ def auth_failure(error):
 @app.errorhandler(400)
 def auth_failure(error):
 	return make_response(jsonify({'error':'One of The Required Fields is Missing'}),400)
+	
+@app.errorhandler(500)
+def internal_server_error(error):
+	return make_response(jsonify({'error':'One of The Required Fields is Missing'}),500)
     
 # END OF WORKING PART
 
@@ -113,7 +117,7 @@ def render_map():
 def render_index():
 	return render_template('index.html')
 	
-@app.route('/clipcult/api/v1.0/index')
+@app.route('/clipcult/api/v1.0/index', methods=['GET','POST'])
 def render_clipcult_index():
 	return render_template('clipcultindex.html')
 	

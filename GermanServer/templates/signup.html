@@ -18,7 +18,7 @@
   <div class="row">
   	<div class="col-md-6">
     
-          <form class="form-horizontal" action="" method="POST">
+          <form class="form-horizontal" action="http://localhost/clipcult/api/v1.0/index" method="POST">
           <fieldset>
             <div id="legend">
               <legend class="">Cadastre-se!</legend>
@@ -67,7 +67,7 @@
             <div class="control-group">
               <!-- Button -->
               <div class="controls">
-                <button class="btn btn-success">Cadastre-se!</button>
+                <button class="btn btn-success" onclick="submitform()" >Cadastre-se!</button>
               </div>
             </div>
           </fieldset>
@@ -76,6 +76,35 @@
     </div> 
   </div>
 </div>
+
+<script>
+		submitform = function(){
+			var jsonData = {};
+			jsonData.title = document.getElementById('name').value;
+			jsonData.link = document.getElementById('username').value;
+			jsonData.desc = document.getElementById('email').value;
+			jsonData.lat = document.getElementById('password').value;
+			jsonData.lng = document.getElementById('password_confirm').value;
+			
+			var formData = JSON.stringify(jsonData);
+			$.ajax({
+				type: "POST",
+				url: "http://localhost/clipcult/api/v1.0/user",
+				data: formData,
+				dataType: "json",
+				contentType : "application/json",
+				success: function(response){
+					alert('Usuario Adicionado');
+				},
+				error: function(jqXHR,textStatus,errorThrown){
+					alert('Falhou! '+ errorThrown);
+				},
+			});
+		}
+</script>
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
 
 	</body>
 </html>
