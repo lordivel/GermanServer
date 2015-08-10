@@ -141,6 +141,10 @@ def render_clipcult_signup():
 def render_emporio():
 	return render_template('emporio.html')
 	
+@app.route('/clipcult/api/v1.0/login')
+def render_login():
+	return render_template('signin.html')
+	
 #END OF HTML PART
     
 #INITIALIZE

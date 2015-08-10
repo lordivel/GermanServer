@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>ClipCult</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="/static/bootstrap.min.css" type="text/css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="/static/clipcult/styles.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+		
+<div class="container">
+  <div class="row">
+  	<div class="col-md-6">
+    
+          <form class="form-horizontal" action="http://localhost/clipcult/api/v1.0/index" method="POST">
+          <fieldset>
+            <div id="legend">
+              <legend class="">Entrar no Emporio!</legend>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="username">Seu login aqui</label>
+              <div class="controls">
+                <input type="text" id="username" name="username" placeholder="" class="form-control input-lg">
+                <p class="help-block">Seu login pode contar qualquer letra ou número, sem espaços</p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="password">Senha</label>
+              <div class="controls">
+                <input type="password" id="password" name="password" placeholder="" class="form-control input-lg">
+                <p class="help-block">Digite sua senha</p>
+              </div>
+            </div>
+        
+            <div class="control-group">
+              <!-- Button -->
+              <div class="controls">
+                <button class="btn btn-success" onclick="submitform()" >Entrar!</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+    
+    </div> 
+  </div>
+</div>
+
+<script>
+		submitform = function(){
+			var jsonData = {};
+			jsonData.name = document.getElementById('name').value;
+			jsonData.username = document.getElementById('username').value;
+			jsonData.email = document.getElementById('email').value;
+			jsonData.password = document.getElementById('password').value;
+			jsonData.passwordconfirm = document.getElementById('password_confirm').value;
+			
+			var formData = JSON.stringify(jsonData);
+			$.ajax({
+				type: "POST",
+				url: "http://localhost/clipcult/api/v1.0/user",
+				data: formData,
+				dataType: "json",
+				contentType : "application/json",
+				success: function(response){
+					alert('Usuario Adicionado');
+				},
+				error: function(jqXHR,textStatus,errorThrown){
+					alert('Falhou! '+ errorThrown);
+				},
+			});
+		}
+</script>
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+
+	</body>
+</html>
