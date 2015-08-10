@@ -124,6 +124,11 @@ def render_clipcult_index():
 @app.route('/clipcult/api/v1.0/signup')
 def render_clipcult_signup():
 	return render_template('signup.html')
+	
+@app.route('/clipcult/api/v1.0/store')
+def render_emporio():
+	return render_template('emporio.html')
+	
 #END OF HTML PART
     
 #INITIALIZE
