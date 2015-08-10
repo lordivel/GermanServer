@@ -27,7 +27,7 @@ body {
 /* Set the fixed height of the footer here */
 #footer {
   height: 60px;
-  color: #0000FF;
+  color: #024828;
   margin-top:50px;
   padding-top:20px;
   padding-bottom:20px;
@@ -77,7 +77,7 @@ body {
 }
 
 #footer {
-  background-color:#0000FF;
+  background-color:#024828;
 }
 
 #footer a {
@@ -138,7 +138,7 @@ h1 {
   
 /* customize nav style */
 .navbar-custom {
-    background-color: #0000FF;
+    background-color: #024828;
 	font-weight:700;
     text-transform:uppercase;
     border-width:0;
@@ -210,7 +210,7 @@ section {
 }
 
 .bg-1 {
-	background: url('/static/clipcult/image/cristo.jpg') no-repeat center center fixed; 
+	background: url('/static/clipcult/image/3.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
@@ -218,7 +218,7 @@ section {
 }
 
 .bg-2 {
-	background: url('/static/clipcult/image/sao.jpg') no-repeat center center fixed; 
+	background: url('/static/clipcult/image/6.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
@@ -226,7 +226,7 @@ section {
 }
 
 .bg-3 {
-	background: url('/static/clipcult/image/estatuas2.jpg') no-repeat center center fixed; 
+	background: url('/static/clipcult/image/5.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;

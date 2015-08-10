@@ -78,6 +78,13 @@ def new_experience():
     con.close()
     return jsonify({'Resultado': "Inserido com Sucesso"}), 201
     
+@app.route('/clipcult/api/v1.0/user', methods=['GET'])
+def new_user():
+	con = engine.connect()
+	con.execute(user.insert(), name='admin', login = 'admin', email='admin@localhost', passwd='teste123')
+	con.close()
+	return jsonify({'Resultado': "Cadastro Realizado Com Sucesso"}), 201
+
 # ERROR HANDLING
 
 @app.errorhandler(404)
@@ -101,10 +108,6 @@ def auth_failure(error):
 @app.route('/clipcultexperiences/api/v1.0/map')
 def render_map():
 	return render_template('map.html')
-    
-#@app.route('/clipcultexperiences/api/v1.0/form')
-#def render_form():
-	#return render_template('form.html')
 	
 @app.route('/clipcultexperiences/api/v1.0/index')
 def render_index():
@@ -114,6 +117,9 @@ def render_index():
 def render_clipcult_index():
 	return render_template('clipcultindex.html')
 	
+@app.route('/clipcult/api/v1.0/signup')
+def render_clipcult_signup():
+	return render_template('signup.html')
 #END OF HTML PART
     
 #INITIALIZE
