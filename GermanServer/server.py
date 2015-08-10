@@ -79,11 +79,23 @@ def new_experience():
     return jsonify({'Resultado': "Inserido com Sucesso"}), 201
     
 @app.route('/clipcult/api/v1.0/user', methods=['POST'])
-def new_user():
+def new_user():	
+	if not request.json or not 'name' in request.json or not 'username' in request.json or not 'email' in request.json or not 'password' in request.json or not 'passwordconfirm' in request.json:
+		abort(400)
+	if request.json['name'] == '' or request.json['username'] == '' or request.json['email'] == '' or request.json['password'] == '' or request.json['passwordconfirm'] == '':
+		abort(400)
+	if request.json['password'] != request.json['passwordconfirm']:
+		abort(400)
 	con = engine.connect()
-	con.execute(user.insert(), name='admin', login = 'admin', email='admin@localhost', passwd='teste123')
+	userresult = con.execute("select * from user where login = \"" + request.json['username'] + "\"").first()
+	if userresult is not None:
+		con.close()
+		abort(400)
+	con.execute(user.insert(), name= request.json.get('name','') , login = request.json.get('username','') , email= request.json.get('email','') , passwd= request.json.get('password',''))
 	con.close()
-	return jsonify({'Resultado': "Cadastro Realizado Com Sucesso"}), 201
+	return jsonify({'Resultado': "Inserido com Sucesso"}), 201
+	
+	
 
 # ERROR HANDLING
 
@@ -96,12 +108,12 @@ def auth_failure(error):
 	return make_response(jsonify({'error':'Authentication Failure'}),401)
 	
 @app.errorhandler(400)
-def auth_failure(error):
+def field_error(error):
 	return make_response(jsonify({'error':'One of The Required Fields is Missing'}),400)
 	
 @app.errorhandler(500)
 def internal_server_error(error):
-	return make_response(jsonify({'error':'One of The Required Fields is Missing'}),500)
+	return make_response(jsonify({'error':'Ja existe um'}),500)
     
 # END OF WORKING PART
 

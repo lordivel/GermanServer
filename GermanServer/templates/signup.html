@@ -80,11 +80,11 @@
 <script>
 		submitform = function(){
 			var jsonData = {};
-			jsonData.title = document.getElementById('name').value;
-			jsonData.link = document.getElementById('username').value;
-			jsonData.desc = document.getElementById('email').value;
-			jsonData.lat = document.getElementById('password').value;
-			jsonData.lng = document.getElementById('password_confirm').value;
+			jsonData.name = document.getElementById('name').value;
+			jsonData.username = document.getElementById('username').value;
+			jsonData.email = document.getElementById('email').value;
+			jsonData.password = document.getElementById('password').value;
+			jsonData.passwordconfirm = document.getElementById('password_confirm').value;
 			
 			var formData = JSON.stringify(jsonData);
 			$.ajax({
