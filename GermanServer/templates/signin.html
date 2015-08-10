@@ -18,7 +18,7 @@
   <div class="row">
   	<div class="col-md-6">
     
-          <form class="form-horizontal" action="http://localhost/clipcult/api/v1.0/index" method="POST">
+          <form class="form-horizontal" action="http://localhost/clipcult/api/v1.0/emporio" method="POST">
           <fieldset>
             <div id="legend">
               <legend class="">Entrar no Emporio!</legend>
@@ -55,16 +55,13 @@
 <script>
 		submitform = function(){
 			var jsonData = {};
-			jsonData.name = document.getElementById('name').value;
 			jsonData.username = document.getElementById('username').value;
-			jsonData.email = document.getElementById('email').value;
 			jsonData.password = document.getElementById('password').value;
-			jsonData.passwordconfirm = document.getElementById('password_confirm').value;
 			
 			var formData = JSON.stringify(jsonData);
 			$.ajax({
 				type: "POST",
-				url: "http://localhost/clipcult/api/v1.0/user",
+				url: "http://localhost/clipcult/api/v1.0/emporio",
 				data: formData,
 				dataType: "json",
 				contentType : "application/json",

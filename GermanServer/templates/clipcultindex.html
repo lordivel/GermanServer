@@ -113,7 +113,6 @@
 	  Por exemplo: no link https://www.youtube.com/watch?v=M7lc1UVf-VE a id do vídeo é M7lc1UVf-VE</h3>
 	  </p> 
       <hr> 
-    <hr>
     
   </div>
 </div>
@@ -131,7 +130,13 @@
       <h1>Empório</h1>
       <p class="lead text-center"> 
       Comércio Eletrônico do ClipCult
-      </p> 
+      <br>
+      <hr>
+	  <h3>O Empório é o lugar onde pode-se comprar, vender e trocar informações. Quer aprender como fazer um vídeo cultural? Esse é o lugar!</h3>
+      <hr>
+      <br>
+      <button class="btn btn-default" onclick= "emporio()" >Acesse o Empório!</button>
+      </p>
       
       <div class="divider"></div>
       
@@ -306,6 +311,12 @@
 </script>
 
 <script>
+		emporio = function(){
+			document.location.href = "emporio";
+		}
+</script>
+
+<script>
 		submitform = function(){
 			var jsonData = {};
 			jsonData.title = document.getElementById('title').value;
@@ -395,7 +406,7 @@
 </div>
 
 
-	<!-- script references -->
+	<!-- script references -->	
 	    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="/static/js/bootstrap.min.js"></script>
 		<script src="http://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed"></script>
