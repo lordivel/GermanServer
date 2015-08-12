@@ -137,13 +137,22 @@ def render_clipcult_index():
 def render_clipcult_signup():
 	return render_template('signup.html')
 	
+@app.route('/clipcult/api/v1.0/login')
+def render_login():
+	return render_template('signin.html')
+	
 @app.route('/clipcult/api/v1.0/emporio')
 def render_emporio():
 	return render_template('emporio.html')
 	
-@app.route('/clipcult/api/v1.0/login')
-def render_login():
-	return render_template('signin.html')
+@app.route('/clipcult/api/v1.0/emporio/4')
+def render_video4():
+	return render_template('4.html')
+	
+@app.route('/clipcult/api/v1.0/emporio/recursos')
+def render_recursos():
+	return render_template('recursos.html')
+	
 	
 #END OF HTML PART
     
