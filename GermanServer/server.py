@@ -145,13 +145,17 @@ def render_login():
 def render_emporio():
 	return render_template('emporio.html')
 	
-@app.route('/clipcult/api/v1.0/emporio/4')
-def render_video4():
-	return render_template('4.html')
+@app.route('/clipcult/api/v1.0/emporio/<int:video_id>')
+def render_video(video_id):
+	return render_template('emporio/' + str(video_id) + '.html')
 	
 @app.route('/clipcult/api/v1.0/emporio/recursos')
 def render_recursos():
-	return render_template('recursos.html')
+	return render_template('emporio/recursos.html')
+	
+@app.route('/clipcult/api/v1.0/emporio/tutorial')
+def render_tutorial():
+	return render_template('emporio/tutorial.html')
 	
 	
 #END OF HTML PART
