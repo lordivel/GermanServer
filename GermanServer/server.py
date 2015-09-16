@@ -18,6 +18,10 @@ app = Flask(__name__)
 
 # WORKING PART
 
+
+#
+# get experience by video ID
+#
 @app.route('/clipcultexperiences/api/v1.0/experiences/<int:experience_id>', methods=['GET'])
 def get_experience(experience_id):
 	con = engine.connect()
@@ -37,6 +41,9 @@ def get_experience(experience_id):
 	con.close()
 	return jsonify({'experiences': returnData})
 
+#
+# get all experiences in BD
+#
 @app.route('/clipcultexperiences/api/v1.0/experiences', methods=['GET'])
 def get_experiences():
 	con = engine.connect()
@@ -56,6 +63,9 @@ def get_experiences():
 	con.close()
 	return jsonify({'experiences': returnData})
 
+#
+# add one experience on BD
+#
 @app.route('/clipcultexperiences/api/v1.0/experiences/', methods=['POST'])
 def new_experience():
     if not request.json or not 'link' in request.json or not 'title' in request.json or not 'desc' in request.json or not 'lat' in request.json or not 'lng' in request.json:
@@ -78,6 +88,10 @@ def new_experience():
     con.close()
     return jsonify({'Resultado': "Inserido com Sucesso"}), 201
     
+    
+#
+# Create a new user
+#
 @app.route('/clipcult/api/v1.0/user', methods=['POST'])
 def new_user():	
 	if not request.json or not 'name' in request.json or not 'username' in request.json or not 'email' in request.json or not 'password' in request.json or not 'passwordconfirm' in request.json:
